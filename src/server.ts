@@ -6,7 +6,7 @@ dotenv.config();
 
 // Establish port
 const portEnv = process.env.PORT;
-const port = typeof portEnv === 'number' ? portEnv : 5000;
+const port = portEnv && parseInt(portEnv) ? portEnv : 5000;
 
 // Start server
 app.listen(port, () => {
