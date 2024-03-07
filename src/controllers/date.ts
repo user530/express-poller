@@ -1,22 +1,22 @@
 import { Request, Response } from 'express';
-import { testEmpty, testData } from '../services/date';
+import { startPolling } from '../services/date';
 
 // Placeholder controllers
 export const getDateResponse = async (req: Request, res: Response) => {
     try {
-        const headers = req.headers;
-        const serviceResult = testEmpty();
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.setHeader("Transfer-Encoding", "chunked");
 
-        res.status(200).json({ headers, serviceResult });
+        startPolling(res);
     } catch (error) {
-        res.status(500).send('ERROR');
+        res.status(500).send(error);
     }
 }
 
 export const postDateResponse = async (req: Request, res: Response) => {
     try {
         const body = req.body;
-        const serviceResult = testData();
+        const serviceResult = 'testData();'
 
         res.status(200).json({ body, serviceResult });
     } catch (error) {
